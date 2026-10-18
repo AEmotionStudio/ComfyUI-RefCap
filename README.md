@@ -112,6 +112,10 @@ Two characters and a location in one shot: chain **H3 RefCap Select** nodes, eac
 - The **MiniMax H3 models** ([Models](#-models))
 - **insightface** (optional, for Orbit Views' `faces` measure)
 
+### ComfyUI Manager
+
+Search for **`ComfyUI-RefCap`** in ComfyUI Manager and click **Install**, or run `comfy node install comfyui-refcap`.
+
 ### Manual Install
 
 <details>

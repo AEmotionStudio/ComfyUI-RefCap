@@ -1,0 +1,14 @@
+[project]
+name = "comfyui-refcap"
+description = "ComfyUI-RefCap: Reference capture for MiniMax H3. One file per character, object or place that replays H3's reference conditioning exactly."
+version = "1.0.0"
+license = {file = "LICENSE"}
+
+[project.urls]
+Repository = "https://github.com/AEmotionStudio/ComfyUI-RefCap"
+#  Used by Comfy Registry https://comfyregistry.org
+
+[tool.comfy]
+PublisherId = "aemotionstudio"
+DisplayName = "ComfyUI-RefCap"
+Icon = ""

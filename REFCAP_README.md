@@ -948,6 +948,7 @@ The tests ran with an unpublished harness of render and scoring scripts against 
 | `example_workflows/` | The 16 canvas workflows "H3 RefCap 1-16" |
 | `REFCAP_README.md`, `REFCAP_VS_REFMOD.md`, `REFCAP_AV_EXPLAINER.md` | These docs |
 | `README.md`, `LICENSE` | The overview and the GPL-3.0 licence |
+| `pyproject.toml`, `.github/workflows/publish_action.yml` | The Comfy Registry metadata, and the action that publishes it when `pyproject.toml` changes |
 
 ## Credits and licenses
 
