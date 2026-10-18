@@ -1,0 +1,962 @@
+{
+ "id": "17f2ba70-e6ce-54e5-92c8-955d7eaa7242",
+ "revision": 0,
+ "last_node_id": 19,
+ "last_link_id": 21,
+ "nodes": [
+  {
+   "id": 1,
+   "type": "UNETLoader",
+   "pos": [
+    0,
+    0
+   ],
+   "size": [
+    420,
+    82
+   ],
+   "flags": {},
+   "order": 0,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "MODEL",
+     "type": "MODEL",
+     "links": [
+      1
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "UNETLoader"
+   },
+   "widgets_values": [
+    "minimax_h3_ref2va_pruned_int8_convrot.safetensors",
+    "default"
+   ]
+  },
+  {
+   "id": 2,
+   "type": "LoraLoaderModelOnly",
+   "pos": [
+    0,
+    440
+   ],
+   "size": [
+    420,
+    82
+   ],
+   "flags": {},
+   "order": 1,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "model",
+     "type": "MODEL",
+     "link": 1
+    }
+   ],
+   "outputs": [
+    {
+     "name": "MODEL",
+     "type": "MODEL",
+     "links": [
+      2
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "LoraLoaderModelOnly"
+   },
+   "widgets_values": [
+    "minimax_h3_ref2v_turbo_4step_v0.1_comfyui_bf16.safetensors",
+    1.0
+   ],
+   "title": "Lightning LoRA (bypass it for the base model at 20 steps)"
+  },
+  {
+   "id": 3,
+   "type": "MiniMaxH3SigmaShift",
+   "pos": [
+    440,
+    0
+   ],
+   "size": [
+    320,
+    82
+   ],
+   "flags": {},
+   "order": 2,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "model",
+     "type": "MODEL",
+     "link": 2
+    }
+   ],
+   "outputs": [
+    {
+     "name": "MODEL",
+     "type": "MODEL",
+     "links": [
+      3,
+      8
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "MiniMaxH3SigmaShift"
+   },
+   "widgets_values": [
+    12.0,
+    3.0
+   ]
+  },
+  {
+   "id": 4,
+   "type": "CLIPLoader",
+   "pos": [
+    0,
+    120
+   ],
+   "size": [
+    420,
+    106
+   ],
+   "flags": {},
+   "order": 3,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "CLIP",
+     "type": "CLIP",
+     "links": [
+      4
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "CLIPLoader"
+   },
+   "widgets_values": [
+    "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+    "minimax",
+    "default"
+   ]
+  },
+  {
+   "id": 5,
+   "type": "VAELoader",
+   "pos": [
+    0,
+    260
+   ],
+   "size": [
+    420,
+    58
+   ],
+   "flags": {},
+   "order": 4,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "VAE",
+     "type": "VAE",
+     "links": [
+      5,
+      16
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "VAELoader"
+   },
+   "widgets_values": [
+    "minimax_h3_video_vae_int8_convrot.safetensors"
+   ],
+   "title": "Video VAE"
+  },
+  {
+   "id": 6,
+   "type": "VAELoader",
+   "pos": [
+    0,
+    350
+   ],
+   "size": [
+    420,
+    58
+   ],
+   "flags": {},
+   "order": 5,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "VAE",
+     "type": "VAE",
+     "links": [
+      6,
+      18
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "VAELoader"
+   },
+   "widgets_values": [
+    "minimax_h3_audio_vae_fp32.safetensors"
+   ],
+   "title": "Audio VAE"
+  },
+  {
+   "id": 7,
+   "type": "RandomNoise",
+   "pos": [
+    0,
+    540
+   ],
+   "size": [
+    420,
+    82
+   ],
+   "flags": {},
+   "order": 6,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "NOISE",
+     "type": "NOISE",
+     "links": [
+      10
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "RandomNoise"
+   },
+   "widgets_values": [
+    4242,
+    "fixed"
+   ]
+  },
+  {
+   "id": 8,
+   "type": "KSamplerSelect",
+   "pos": [
+    0,
+    660
+   ],
+   "size": [
+    420,
+    58
+   ],
+   "flags": {},
+   "order": 7,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "SAMPLER",
+     "type": "SAMPLER",
+     "links": [
+      12
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "KSamplerSelect"
+   },
+   "widgets_values": [
+    "res_multistep"
+   ]
+  },
+  {
+   "id": 9,
+   "type": "BasicScheduler",
+   "pos": [
+    0,
+    750
+   ],
+   "size": [
+    420,
+    106
+   ],
+   "flags": {},
+   "order": 8,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "model",
+     "type": "MODEL",
+     "link": 3
+    }
+   ],
+   "outputs": [
+    {
+     "name": "SIGMAS",
+     "type": "SIGMAS",
+     "links": [
+      13
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "BasicScheduler"
+   },
+   "widgets_values": [
+    "simple",
+    4,
+    1.0
+   ]
+  },
+  {
+   "id": 10,
+   "type": "MiniMaxH3ReferenceToVideo",
+   "pos": [
+    460,
+    120
+   ],
+   "size": [
+    460,
+    520
+   ],
+   "flags": {},
+   "order": 9,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "clip",
+     "type": "CLIP",
+     "link": 4
+    },
+    {
+     "name": "vae",
+     "type": "VAE",
+     "link": 5,
+     "shape": 7
+    },
+    {
+     "name": "audio_vae",
+     "type": "VAE",
+     "link": 6,
+     "shape": 7
+    },
+    {
+     "label": "ref_image_0",
+     "name": "ref_images.ref_image_0",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "label": "ref_video_0",
+     "name": "ref_videos.ref_video_0",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "label": "ref_video_audio_0",
+     "name": "ref_video_audios.ref_video_audio_0",
+     "shape": 7,
+     "type": "AUDIO",
+     "link": null
+    },
+    {
+     "label": "ref_audio_0",
+     "name": "ref_audios.ref_audio_0",
+     "shape": 7,
+     "type": "AUDIO",
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "name": "positive",
+     "type": "CONDITIONING",
+     "links": [
+      7
+     ],
+     "slot_index": 0
+    },
+    {
+     "name": "LATENT",
+     "type": "LATENT",
+     "links": [
+      14
+     ],
+     "slot_index": 1
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "MiniMaxH3ReferenceToVideo"
+   },
+   "widgets_values": [
+    "subject_definitions:\n<Subject 1> is the woman in <Picture 1>, <Picture 2>, <Picture 3>, <Picture 4> and <Picture 5>, a white woman in her mid-twenties with dark brown, wavy, shoulder-length hair.\n\nsummary:\n[reference generation] <Subject 1> sits at a sunlit cafe table, looks up from her coffee and smiles at the camera.\n\nretention_analysis:\n<Subject 1> (appears in [Shot 1]): fully_preserved - the woman's facial identity and hairstyle are retained.\n\ndetailed_description:\nThe target video is a realistic, full-color cinematic shot with warm natural daylight and a shallow depth of field.\n[Shot 1] A medium close-up shows <Subject 1>, the young woman with dark brown wavy hair, wearing a plain navy crew-neck t-shirt, seated at a wooden table outside a cafe on a sunny city street. She looks down at a cup of coffee, then lifts her head and turns toward the camera with a relaxed, warm smile. The camera holds steady at eye level with a slow, slight push-in. Pedestrians pass softly out of focus in the background.\n\noverall_soundscape:\nGentle street ambience with distant traffic and quiet cafe chatter.\n\nnon_diegetic_music:\nN/A",
+    608,
+    352,
+    124,
+    "match"
+   ],
+   "title": "Prompt (no photos connected)"
+  },
+  {
+   "id": 11,
+   "type": "H3RefCapApply",
+   "pos": [
+    460,
+    680
+   ],
+   "size": [
+    360,
+    130
+   ],
+   "flags": {},
+   "order": 10,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "conditioning",
+     "type": "CONDITIONING",
+     "link": 7
+    }
+   ],
+   "outputs": [
+    {
+     "name": "CONDITIONING",
+     "type": "CONDITIONING",
+     "links": [
+      9
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "H3RefCapApply"
+   },
+   "widgets_values": [
+    "lf_013.safetensors",
+    true,
+    true
+   ]
+  },
+  {
+   "id": 12,
+   "type": "BasicGuider",
+   "pos": [
+    960,
+    0
+   ],
+   "size": [
+    240,
+    46
+   ],
+   "flags": {},
+   "order": 11,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "model",
+     "type": "MODEL",
+     "link": 8
+    },
+    {
+     "name": "conditioning",
+     "type": "CONDITIONING",
+     "link": 9
+    }
+   ],
+   "outputs": [
+    {
+     "name": "GUIDER",
+     "type": "GUIDER",
+     "links": [
+      11
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "BasicGuider"
+   },
+   "widgets_values": []
+  },
+  {
+   "id": 13,
+   "type": "SamplerCustomAdvanced",
+   "pos": [
+    960,
+    90
+   ],
+   "size": [
+    260,
+    110
+   ],
+   "flags": {},
+   "order": 12,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "noise",
+     "type": "NOISE",
+     "link": 10
+    },
+    {
+     "name": "guider",
+     "type": "GUIDER",
+     "link": 11
+    },
+    {
+     "name": "sampler",
+     "type": "SAMPLER",
+     "link": 12
+    },
+    {
+     "name": "sigmas",
+     "type": "SIGMAS",
+     "link": 13
+    },
+    {
+     "name": "latent_image",
+     "type": "LATENT",
+     "link": 14
+    }
+   ],
+   "outputs": [
+    {
+     "name": "output",
+     "type": "LATENT",
+     "links": [
+      15,
+      17
+     ],
+     "slot_index": 0
+    },
+    {
+     "name": "denoised_output",
+     "type": "LATENT",
+     "links": [],
+     "slot_index": 1
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "SamplerCustomAdvanced"
+   },
+   "widgets_values": []
+  },
+  {
+   "id": 14,
+   "type": "VAEDecode",
+   "pos": [
+    1250,
+    0
+   ],
+   "size": [
+    210,
+    46
+   ],
+   "flags": {},
+   "order": 13,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "samples",
+     "type": "LATENT",
+     "link": 15
+    },
+    {
+     "name": "vae",
+     "type": "VAE",
+     "link": 16
+    }
+   ],
+   "outputs": [
+    {
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "links": [
+      19
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "VAEDecode"
+   },
+   "widgets_values": []
+  },
+  {
+   "id": 15,
+   "type": "VAEDecodeAudio",
+   "pos": [
+    1250,
+    90
+   ],
+   "size": [
+    210,
+    46
+   ],
+   "flags": {},
+   "order": 14,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "samples",
+     "type": "LATENT",
+     "link": 17
+    },
+    {
+     "name": "vae",
+     "type": "VAE",
+     "link": 18
+    }
+   ],
+   "outputs": [
+    {
+     "name": "AUDIO",
+     "type": "AUDIO",
+     "links": [
+      20
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "VAEDecodeAudio"
+   },
+   "widgets_values": []
+  },
+  {
+   "id": 16,
+   "type": "CreateVideo",
+   "pos": [
+    1490,
+    0
+   ],
+   "size": [
+    270,
+    106
+   ],
+   "flags": {},
+   "order": 15,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "images",
+     "type": "IMAGE",
+     "link": 19
+    },
+    {
+     "name": "audio",
+     "type": "AUDIO",
+     "link": 20,
+     "shape": 7
+    }
+   ],
+   "outputs": [
+    {
+     "name": "VIDEO",
+     "type": "VIDEO",
+     "links": [
+      21
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "CreateVideo"
+   },
+   "widgets_values": [
+    24.0,
+    "auto",
+    "sRGB",
+    "none"
+   ]
+  },
+  {
+   "id": 17,
+   "type": "SaveVideo",
+   "pos": [
+    1790,
+    0
+   ],
+   "size": [
+    430,
+    400
+   ],
+   "flags": {},
+   "order": 16,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "video",
+     "type": "VIDEO",
+     "link": 21
+    }
+   ],
+   "outputs": [
+    {
+     "name": "video",
+     "type": "VIDEO",
+     "links": [],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "SaveVideo"
+   },
+   "widgets_values": [
+    "h3_refcap/apply",
+    "auto",
+    "auto"
+   ],
+   "title": "Output"
+  },
+  {
+   "id": 18,
+   "type": "MarkdownNote",
+   "pos": [
+    960,
+    450
+   ],
+   "size": [
+    640,
+    900
+   ],
+   "flags": {},
+   "order": 17,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [],
+   "title": "Read me",
+   "properties": {},
+   "widgets_values": [
+    "## 3. Generate with a RefCap (Apply, cached)\n**H3 RefCap Apply (cached)** glues the RefCap's cached `<Picture i>` rows in front of a prompt that was encoded **without** the photos, and attaches the captured latents. The photos never go through the text encoder. The catch: natively the prompt's words attend to the photos, and here they can't. On the London Set faces that cost 0.01 of ArcFace similarity.\n\n**Use it when** you want to experiment with the two reference channels, or to keep the photo rows out of the text encoder. Otherwise prefer workflow 2 (Replay).\n\n**Wiring**\n- The prompt goes into *MiniMax H3 Reference to Video* with **no photos connected**; it also makes the latent.\n- The prompt must not contain other references. The node refuses conditioning that already has image rows.\n\n**Toggles** (for experiments)\n- `rows`: the text encoder's view of the photos.\n- `latents`: the compressed photos the video model attends to on every step. Latents alone kept more identity than rows alone.\n\n**Measured** (ArcFace face similarity to the photos; 2 London Set subjects x 2 scenes x 3 seeds, 608x352, 56 frames, on a community H3 turbo finetune at 8 steps):\n\n| path | vs native references (`match`) | recognisable as the person |\n|---|---|---|\n| native reference node | baseline (0.62-0.71) | 12/12 |\n| **H3 RefCap Replay** | identical, pixel for pixel | 12/12 |\n| Replay, RefCap captured from 1024 px photos with `max` | **+0.06**, higher in 12/12; ~2.2x render time, 163 MB file | 12/12 |\n| H3 RefCap Apply (cached) | -0.01 | 12/12 |\n| Apply, latents only / rows only | -0.08 / -0.27 | 12/12 |\n| RefMod Full Reference (ComfyUI-MiniMaxH3Mod, 1024 px) | +0.03 Apply, +0.05 Text Encode; the 1024 px RefCap beat its best path in 11/12 | 12/12 |\n| RefMod Compressed Reference | -0.60 to -0.62 | 0/12 |\n| no references | -0.66 | 0/12 |\n\n**More identity:** capture from ~1024 px photos with `ref_image_size` = `max`, if you can afford the render time. Details: `REFCAP_README.md` in ComfyUI-RefCap.\n\n**Settings in these workflows** follow ComfyUI's MiniMax H3 reference-to-video template: the ref2va model with its 4-step Lightning LoRA, 4 steps, `res_multistep` + `simple`, 608x352. For the base model, bypass the *Lightning LoRA* node and use 20 steps. The measurements quoted here ran on a community H3 turbo finetune (shift 6/3, 8 steps) on a 12 GB GPU. Raise the size and length for final renders; the reference tokens ride through every step, so more photos and larger captures cost time."
+   ],
+   "color": "#432",
+   "bgcolor": "#653"
+  },
+  {
+   "id": 19,
+   "type": "MarkdownNote",
+   "pos": [
+    1620,
+    450
+   ],
+   "size": [
+    640,
+    900
+   ],
+   "flags": {},
+   "order": 18,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [],
+   "title": "Prompt guide",
+   "properties": {},
+   "widgets_values": [
+    "## Writing the prompt\nH3's reference mode reads a structured prompt. The photos are labelled in order: `<Picture 1>` ... `<Picture N>`, where N is the number of photos in the RefCap.\n\n```\nsubject_definitions:\n<Subject 1> is the woman in <Picture 1>, <Picture 2> and <Picture 3>, a white woman in her mid-twenties with dark brown, wavy, shoulder-length hair.\n\nsummary:\n[reference generation] <Subject 1> sits at a sunlit cafe table and smiles at the camera.\n\nretention_analysis:\n<Subject 1> (appears in [Shot 1]): fully_preserved - the woman's facial identity and hairstyle are retained.\n\ndetailed_description:\nThe target video is a realistic, full-color cinematic shot with warm daylight.\n[Shot 1] A medium close-up shows <Subject 1>, wearing a navy t-shirt, ...\n\noverall_soundscape:\nGentle street ambience.\n\nnon_diegetic_music:\nN/A\n```\n\n**Tips**\n- Describe age, gender and hair, and **say the outfit and action you want**. The photos supply the face; the prompt supplies everything else.\n- Don't count on a name. The tests never used one.\n- More detail in `detailed_description` (camera, lighting, motion, sound) gives better shots. MiniMax's guide suggests 350-500 words for final renders.\n- Official format guide: MiniMax-H3 `docs/VIDEO_PROMPT_WRITING_GUIDE_ref_en.md`."
+   ],
+   "color": "#432",
+   "bgcolor": "#653"
+  }
+ ],
+ "links": [
+  [
+   1,
+   1,
+   0,
+   2,
+   0,
+   "MODEL"
+  ],
+  [
+   2,
+   2,
+   0,
+   3,
+   0,
+   "MODEL"
+  ],
+  [
+   3,
+   3,
+   0,
+   9,
+   0,
+   "MODEL"
+  ],
+  [
+   4,
+   4,
+   0,
+   10,
+   0,
+   "CLIP"
+  ],
+  [
+   5,
+   5,
+   0,
+   10,
+   1,
+   "VAE"
+  ],
+  [
+   6,
+   6,
+   0,
+   10,
+   2,
+   "VAE"
+  ],
+  [
+   7,
+   10,
+   0,
+   11,
+   0,
+   "CONDITIONING"
+  ],
+  [
+   8,
+   3,
+   0,
+   12,
+   0,
+   "MODEL"
+  ],
+  [
+   9,
+   11,
+   0,
+   12,
+   1,
+   "CONDITIONING"
+  ],
+  [
+   10,
+   7,
+   0,
+   13,
+   0,
+   "NOISE"
+  ],
+  [
+   11,
+   12,
+   0,
+   13,
+   1,
+   "GUIDER"
+  ],
+  [
+   12,
+   8,
+   0,
+   13,
+   2,
+   "SAMPLER"
+  ],
+  [
+   13,
+   9,
+   0,
+   13,
+   3,
+   "SIGMAS"
+  ],
+  [
+   14,
+   10,
+   1,
+   13,
+   4,
+   "LATENT"
+  ],
+  [
+   15,
+   13,
+   0,
+   14,
+   0,
+   "LATENT"
+  ],
+  [
+   16,
+   5,
+   0,
+   14,
+   1,
+   "VAE"
+  ],
+  [
+   17,
+   13,
+   0,
+   15,
+   0,
+   "LATENT"
+  ],
+  [
+   18,
+   6,
+   0,
+   15,
+   1,
+   "VAE"
+  ],
+  [
+   19,
+   14,
+   0,
+   16,
+   0,
+   "IMAGE"
+  ],
+  [
+   20,
+   15,
+   0,
+   16,
+   1,
+   "AUDIO"
+  ],
+  [
+   21,
+   16,
+   0,
+   17,
+   0,
+   "VIDEO"
+  ]
+ ],
+ "groups": [],
+ "config": {},
+ "extra": {
+  "ds": {
+   "scale": 0.5,
+   "offset": [
+    60,
+    80
+   ]
+  },
+  "frontendVersion": "1.39.5"
+ },
+ "version": 0.4
+}

@@ -1,0 +1,13 @@
+# data: test outputs and logs stay out of git
+pack_eval/
+logs/
+__pycache__/
+# the test harness is a private repo of its own
+dev/
+# notes on the H3 Video workflows, which live in user/default/workflows
+VIDEOREF_README.md
+# models, renders and media never belong in the repo
+*.safetensors
+*.mp4
+*.onnx
+*.pt

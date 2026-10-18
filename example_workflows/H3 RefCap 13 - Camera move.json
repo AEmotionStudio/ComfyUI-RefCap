@@ -1,0 +1,1136 @@
+{
+ "id": "40e0a31a-2a45-5eb2-a787-56a3255361be",
+ "revision": 0,
+ "last_node_id": 24,
+ "last_link_id": 23,
+ "nodes": [
+  {
+   "id": 1,
+   "type": "UNETLoader",
+   "pos": [
+    0,
+    0
+   ],
+   "size": [
+    420,
+    82
+   ],
+   "flags": {},
+   "order": 0,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "MODEL",
+     "type": "MODEL",
+     "links": [
+      1
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "UNETLoader"
+   },
+   "widgets_values": [
+    "minimax_h3_ref2va_pruned_int8_convrot.safetensors",
+    "default"
+   ]
+  },
+  {
+   "id": 2,
+   "type": "LoraLoaderModelOnly",
+   "pos": [
+    0,
+    440
+   ],
+   "size": [
+    420,
+    82
+   ],
+   "flags": {},
+   "order": 1,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "model",
+     "type": "MODEL",
+     "link": 1
+    }
+   ],
+   "outputs": [
+    {
+     "name": "MODEL",
+     "type": "MODEL",
+     "links": [
+      2
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "LoraLoaderModelOnly"
+   },
+   "widgets_values": [
+    "minimax_h3_ref2v_turbo_4step_v0.1_comfyui_bf16.safetensors",
+    1.0
+   ],
+   "title": "Lightning LoRA (bypass it for the base model at 20 steps)"
+  },
+  {
+   "id": 3,
+   "type": "MiniMaxH3SigmaShift",
+   "pos": [
+    440,
+    0
+   ],
+   "size": [
+    320,
+    82
+   ],
+   "flags": {},
+   "order": 2,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "model",
+     "type": "MODEL",
+     "link": 2
+    }
+   ],
+   "outputs": [
+    {
+     "name": "MODEL",
+     "type": "MODEL",
+     "links": [
+      3,
+      10
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "MiniMaxH3SigmaShift"
+   },
+   "widgets_values": [
+    12.0,
+    3.0
+   ]
+  },
+  {
+   "id": 4,
+   "type": "CLIPLoader",
+   "pos": [
+    0,
+    120
+   ],
+   "size": [
+    420,
+    106
+   ],
+   "flags": {},
+   "order": 3,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "CLIP",
+     "type": "CLIP",
+     "links": [
+      6
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "CLIPLoader"
+   },
+   "widgets_values": [
+    "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+    "minimax",
+    "default"
+   ]
+  },
+  {
+   "id": 5,
+   "type": "VAELoader",
+   "pos": [
+    0,
+    260
+   ],
+   "size": [
+    420,
+    58
+   ],
+   "flags": {},
+   "order": 4,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "VAE",
+     "type": "VAE",
+     "links": [
+      18
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "VAELoader"
+   },
+   "widgets_values": [
+    "minimax_h3_video_vae_int8_convrot.safetensors"
+   ],
+   "title": "Video VAE"
+  },
+  {
+   "id": 6,
+   "type": "VAELoader",
+   "pos": [
+    0,
+    350
+   ],
+   "size": [
+    420,
+    58
+   ],
+   "flags": {},
+   "order": 5,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "VAE",
+     "type": "VAE",
+     "links": [
+      20
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "VAELoader"
+   },
+   "widgets_values": [
+    "minimax_h3_audio_vae_fp32.safetensors"
+   ],
+   "title": "Audio VAE"
+  },
+  {
+   "id": 7,
+   "type": "RandomNoise",
+   "pos": [
+    0,
+    540
+   ],
+   "size": [
+    420,
+    82
+   ],
+   "flags": {},
+   "order": 6,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "NOISE",
+     "type": "NOISE",
+     "links": [
+      12
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "RandomNoise"
+   },
+   "widgets_values": [
+    4242,
+    "fixed"
+   ]
+  },
+  {
+   "id": 8,
+   "type": "KSamplerSelect",
+   "pos": [
+    0,
+    660
+   ],
+   "size": [
+    420,
+    58
+   ],
+   "flags": {},
+   "order": 7,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "SAMPLER",
+     "type": "SAMPLER",
+     "links": [
+      14
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "KSamplerSelect"
+   },
+   "widgets_values": [
+    "res_multistep"
+   ]
+  },
+  {
+   "id": 9,
+   "type": "BasicScheduler",
+   "pos": [
+    0,
+    750
+   ],
+   "size": [
+    420,
+    106
+   ],
+   "flags": {},
+   "order": 8,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "model",
+     "type": "MODEL",
+     "link": 3
+    }
+   ],
+   "outputs": [
+    {
+     "name": "SIGMAS",
+     "type": "SIGMAS",
+     "links": [
+      15
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "BasicScheduler"
+   },
+   "widgets_values": [
+    "simple",
+    4,
+    1.0
+   ]
+  },
+  {
+   "id": 10,
+   "type": "PrimitiveStringMultiline",
+   "pos": [
+    0,
+    900
+   ],
+   "size": [
+    900,
+    460
+   ],
+   "flags": {},
+   "order": 9,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "STRING",
+     "type": "STRING",
+     "links": [
+      7
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "PrimitiveStringMultiline"
+   },
+   "widgets_values": [
+    "subject_definitions:\n<Subject 1> is the woman in <Picture 1>, <Picture 2>, <Picture 3>, <Picture 4> and <Picture 5>, a white woman in her mid-twenties with dark brown, wavy, shoulder-length hair.\nThe location is the living room in <Picture 6>, <Picture 7> and <Picture 8>.\n<Video 1> is the camera-movement reference for [Shot 1].\n\nsummary:\n[reference generation] The camera moves slowly forward into the living room.\n\nretention_analysis:\n<Subject 1> (appears in [Shot 1]): fully_preserved - the woman's facial identity and hairstyle are retained.\nThe room (appears in [Shot 1]): fully_preserved - its layout, furniture, colours and light are retained.\n<Video 1> (camera movement): weak_reference - only the camera's path and speed are followed; none of its content appears.\n\ndetailed_description:\nThe target video is a realistic, full-color shot in the living room, lit as in its pictures, with everything in sharp focus.\n[Shot 1] <Subject 1>, wearing a navy t-shirt and jeans, sits on the sofa reading a book. The camera starts at the doorway at eye level and moves slowly and steadily straight forward into the room, without turning. The camera moves exactly as the camera in <Video 1> does, along the same path at the same speed.\n\noverall_soundscape:\nQuiet room tone.\n\nnon_diegetic_music:\nN/A"
+   ],
+   "title": "Prompt (<Video 1> is the camera-movement reference for [Shot 1])"
+  },
+  {
+   "id": 11,
+   "type": "H3RefCapSelect",
+   "pos": [
+    960,
+    60
+   ],
+   "size": [
+    420,
+    200
+   ],
+   "flags": {},
+   "order": 10,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "pack",
+     "type": "REFCAP_PACK",
+     "link": null,
+     "shape": 7
+    }
+   ],
+   "outputs": [
+    {
+     "name": "REFCAP_PACK",
+     "type": "REFCAP_PACK",
+     "links": [
+      4
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "H3RefCapSelect"
+   },
+   "widgets_values": [
+    "lf_013.safetensors",
+    "all",
+    "",
+    ""
+   ],
+   "title": "Character \u2014 press 'Pick views...'"
+  },
+  {
+   "id": 12,
+   "type": "H3RefCapSelect",
+   "pos": [
+    960,
+    320
+   ],
+   "size": [
+    420,
+    200
+   ],
+   "flags": {},
+   "order": 11,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "pack",
+     "type": "REFCAP_PACK",
+     "link": 4,
+     "shape": 7
+    }
+   ],
+   "outputs": [
+    {
+     "name": "REFCAP_PACK",
+     "type": "REFCAP_PACK",
+     "links": [
+      5
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "H3RefCapSelect"
+   },
+   "widgets_values": [
+    "location_livingroom.safetensors",
+    "1-3",
+    "",
+    ""
+   ],
+   "title": "Room: a location RefCap (workflow 9)"
+  },
+  {
+   "id": 13,
+   "type": "H3RefCapSelect",
+   "pos": [
+    960,
+    580
+   ],
+   "size": [
+    420,
+    200
+   ],
+   "flags": {},
+   "order": 12,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "pack",
+     "type": "REFCAP_PACK",
+     "link": 5,
+     "shape": 7
+    }
+   ],
+   "outputs": [
+    {
+     "name": "REFCAP_PACK",
+     "type": "REFCAP_PACK",
+     "links": [
+      8
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "H3RefCapSelect"
+   },
+   "widgets_values": [
+    "camera_push_forward.safetensors",
+    "none",
+    "1",
+    ""
+   ],
+   "title": "Camera move: a clip RefCap (make one with workflow 11)"
+  },
+  {
+   "id": 14,
+   "type": "H3RefCapPackReplay",
+   "pos": [
+    1440,
+    60
+   ],
+   "size": [
+    440,
+    200
+   ],
+   "flags": {},
+   "order": 13,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "clip",
+     "type": "CLIP",
+     "link": 6
+    },
+    {
+     "name": "prompt",
+     "type": "STRING",
+     "widget": {
+      "name": "prompt"
+     },
+     "link": 7
+    },
+    {
+     "name": "pack",
+     "type": "REFCAP_PACK",
+     "link": 8
+    }
+   ],
+   "outputs": [
+    {
+     "name": "conditioning",
+     "type": "CONDITIONING",
+     "links": [
+      11
+     ],
+     "slot_index": 0
+    },
+    {
+     "name": "label_guide",
+     "type": "STRING",
+     "links": [
+      9
+     ],
+     "slot_index": 1
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "H3RefCapPackReplay"
+   },
+   "widgets_values": [
+    "subject_definitions:\n<Subject 1> is the woman in <Picture 1>, <Picture 2>, <Picture 3>, <Picture 4> and <Picture 5>, a white woman in her mid-twenties with dark brown, wavy, shoulder-length hair.\nThe location is the living room in <Picture 6>, <Picture 7> and <Picture 8>.\n<Video 1> is the camera-movement reference for [Shot 1].\n\nsummary:\n[reference generation] The camera moves slowly forward into the living room.\n\nretention_analysis:\n<Subject 1> (appears in [Shot 1]): fully_preserved - the woman's facial identity and hairstyle are retained.\nThe room (appears in [Shot 1]): fully_preserved - its layout, furniture, colours and light are retained.\n<Video 1> (camera movement): weak_reference - only the camera's path and speed are followed; none of its content appears.\n\ndetailed_description:\nThe target video is a realistic, full-color shot in the living room, lit as in its pictures, with everything in sharp focus.\n[Shot 1] <Subject 1>, wearing a navy t-shirt and jeans, sits on the sofa reading a book. The camera starts at the doorway at eye level and moves slowly and steadily straight forward into the room, without turning. The camera moves exactly as the camera in <Video 1> does, along the same path at the same speed.\n\noverall_soundscape:\nQuiet room tone.\n\nnon_diegetic_music:\nN/A"
+   ],
+   "title": "Replay Pack: every selected photo as one set of references"
+  },
+  {
+   "id": 15,
+   "type": "PreviewAny",
+   "pos": [
+    1440,
+    300
+   ],
+   "size": [
+    440,
+    220
+   ],
+   "flags": {},
+   "order": 14,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "source",
+     "type": "*",
+     "link": 9
+    }
+   ],
+   "outputs": [
+    {
+     "name": "STRING",
+     "type": "STRING",
+     "links": [],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "PreviewAny"
+   },
+   "widgets_values": [],
+   "title": "Label guide (which <Picture i> is who)"
+  },
+  {
+   "id": 16,
+   "type": "EmptyMiniMaxH3LatentAV",
+   "pos": [
+    1440,
+    800
+   ],
+   "size": [
+    320,
+    130
+   ],
+   "flags": {},
+   "order": 15,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "LATENT",
+     "type": "LATENT",
+     "links": [
+      16
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "EmptyMiniMaxH3LatentAV"
+   },
+   "widgets_values": [
+    608,
+    352,
+    124
+   ]
+  },
+  {
+   "id": 17,
+   "type": "BasicGuider",
+   "pos": [
+    1940,
+    60
+   ],
+   "size": [
+    240,
+    46
+   ],
+   "flags": {},
+   "order": 16,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "model",
+     "type": "MODEL",
+     "link": 10
+    },
+    {
+     "name": "conditioning",
+     "type": "CONDITIONING",
+     "link": 11
+    }
+   ],
+   "outputs": [
+    {
+     "name": "GUIDER",
+     "type": "GUIDER",
+     "links": [
+      13
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "BasicGuider"
+   },
+   "widgets_values": []
+  },
+  {
+   "id": 18,
+   "type": "SamplerCustomAdvanced",
+   "pos": [
+    1940,
+    150
+   ],
+   "size": [
+    260,
+    110
+   ],
+   "flags": {},
+   "order": 17,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "noise",
+     "type": "NOISE",
+     "link": 12
+    },
+    {
+     "name": "guider",
+     "type": "GUIDER",
+     "link": 13
+    },
+    {
+     "name": "sampler",
+     "type": "SAMPLER",
+     "link": 14
+    },
+    {
+     "name": "sigmas",
+     "type": "SIGMAS",
+     "link": 15
+    },
+    {
+     "name": "latent_image",
+     "type": "LATENT",
+     "link": 16
+    }
+   ],
+   "outputs": [
+    {
+     "name": "output",
+     "type": "LATENT",
+     "links": [
+      17,
+      19
+     ],
+     "slot_index": 0
+    },
+    {
+     "name": "denoised_output",
+     "type": "LATENT",
+     "links": [],
+     "slot_index": 1
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "SamplerCustomAdvanced"
+   },
+   "widgets_values": []
+  },
+  {
+   "id": 19,
+   "type": "VAEDecode",
+   "pos": [
+    2230,
+    60
+   ],
+   "size": [
+    210,
+    46
+   ],
+   "flags": {},
+   "order": 18,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "samples",
+     "type": "LATENT",
+     "link": 17
+    },
+    {
+     "name": "vae",
+     "type": "VAE",
+     "link": 18
+    }
+   ],
+   "outputs": [
+    {
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "links": [
+      21
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "VAEDecode"
+   },
+   "widgets_values": []
+  },
+  {
+   "id": 20,
+   "type": "VAEDecodeAudio",
+   "pos": [
+    2230,
+    150
+   ],
+   "size": [
+    210,
+    46
+   ],
+   "flags": {},
+   "order": 19,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "samples",
+     "type": "LATENT",
+     "link": 19
+    },
+    {
+     "name": "vae",
+     "type": "VAE",
+     "link": 20
+    }
+   ],
+   "outputs": [
+    {
+     "name": "AUDIO",
+     "type": "AUDIO",
+     "links": [
+      22
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "VAEDecodeAudio"
+   },
+   "widgets_values": []
+  },
+  {
+   "id": 21,
+   "type": "CreateVideo",
+   "pos": [
+    2470,
+    60
+   ],
+   "size": [
+    270,
+    106
+   ],
+   "flags": {},
+   "order": 20,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "images",
+     "type": "IMAGE",
+     "link": 21
+    },
+    {
+     "name": "audio",
+     "type": "AUDIO",
+     "link": 22,
+     "shape": 7
+    }
+   ],
+   "outputs": [
+    {
+     "name": "VIDEO",
+     "type": "VIDEO",
+     "links": [
+      23
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "CreateVideo"
+   },
+   "widgets_values": [
+    24.0,
+    "auto",
+    "sRGB",
+    "none"
+   ]
+  },
+  {
+   "id": 22,
+   "type": "SaveVideo",
+   "pos": [
+    2770,
+    60
+   ],
+   "size": [
+    430,
+    400
+   ],
+   "flags": {},
+   "order": 21,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "video",
+     "type": "VIDEO",
+     "link": 23
+    }
+   ],
+   "outputs": [
+    {
+     "name": "video",
+     "type": "VIDEO",
+     "links": [],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "SaveVideo"
+   },
+   "widgets_values": [
+    "h3_refcap/camera",
+    "auto",
+    "auto"
+   ],
+   "title": "Output"
+  },
+  {
+   "id": 23,
+   "type": "MarkdownNote",
+   "pos": [
+    1940,
+    520
+   ],
+   "size": [
+    640,
+    1000
+   ],
+   "flags": {},
+   "order": 22,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [],
+   "title": "Read me",
+   "properties": {},
+   "widgets_values": [
+    "## 13. Camera move\nShoots a scene with a reference clip as the camera-movement reference: *Select* a character and a room as usual, then a camera clip RefCap, marked as a camera reference only, as MiniMax's guide does.\n\n**Measured first (REFCAP_README.md, \"Video references\"): the clip did not carry the move.** With the move in words, H3 shot a pan, a push and a tilt in the right direction with or without the clip, and the clip changed neither direction nor speed. With the clip alone, every move became the same slow pan to the right. Nothing of the clips' content leaked in. **Say the move in words**; this workflow is for trying other clips and wordings.\n\n**Steps**\n1. **Character** and **Room**: any RefCaps; the default room is workflow 9's example, views 1-3 (the room from -45 to 45 degrees). A shot takes at most 9 pictures.\n2. **Camera move**: a clip RefCap with `views` = `none` and `clips` = `1`. The examples are Pexels clips cut to 5.2 s: `camera_pan_right`, `camera_push_forward`, `camera_tilt_down`, `camera_orbit`. Make your own with workflow 11 from a clip with one clean move, at 24 fps.\n3. In the prompt:\n   - keep `[reference generation]`, `<Video 1> is the camera-movement reference for [Shot 1].`, and the retention line `<Video 1> (camera movement): weak_reference - only the camera's path and speed are followed; none of its content appears.`;\n   - say the move in words too, and that the camera moves as the camera in `<Video 1>` does.\n4. Render at least as long as the clip, 124 frames.\n\n**Cost:** the clip adds 7,733 reference tokens to the shot, about 46 s per clip on a 12 GB GPU.\n\n**Settings in these workflows** follow ComfyUI's MiniMax H3 reference-to-video template: the ref2va model with its 4-step Lightning LoRA, 4 steps, `res_multistep` + `simple`, 608x352. For the base model, bypass the *Lightning LoRA* node and use 20 steps. The measurements quoted here ran on a community H3 turbo finetune (shift 6/3, 8 steps) on a 12 GB GPU. Raise the size and length for final renders; the reference tokens ride through every step, so more photos and larger captures cost time."
+   ],
+   "color": "#432",
+   "bgcolor": "#653"
+  },
+  {
+   "id": 24,
+   "type": "MarkdownNote",
+   "pos": [
+    2600,
+    520
+   ],
+   "size": [
+    640,
+    900
+   ],
+   "flags": {},
+   "order": 23,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [],
+   "title": "Prompt guide",
+   "properties": {},
+   "widgets_values": [
+    "## Writing the prompt\nH3's reference mode reads a structured prompt. The photos are labelled in order: `<Picture 1>` ... `<Picture N>`, where N is the number of photos in the RefCap.\n\n```\nsubject_definitions:\n<Subject 1> is the woman in <Picture 1>, <Picture 2> and <Picture 3>, a white woman in her mid-twenties with dark brown, wavy, shoulder-length hair.\n\nsummary:\n[reference generation] <Subject 1> sits at a sunlit cafe table and smiles at the camera.\n\nretention_analysis:\n<Subject 1> (appears in [Shot 1]): fully_preserved - the woman's facial identity and hairstyle are retained.\n\ndetailed_description:\nThe target video is a realistic, full-color cinematic shot with warm daylight.\n[Shot 1] A medium close-up shows <Subject 1>, wearing a navy t-shirt, ...\n\noverall_soundscape:\nGentle street ambience.\n\nnon_diegetic_music:\nN/A\n```\n\n**Tips**\n- Describe age, gender and hair, and **say the outfit and action you want**. The photos supply the face; the prompt supplies everything else.\n- Don't count on a name. The tests never used one.\n- More detail in `detailed_description` (camera, lighting, motion, sound) gives better shots. MiniMax's guide suggests 350-500 words for final renders.\n- Official format guide: MiniMax-H3 `docs/VIDEO_PROMPT_WRITING_GUIDE_ref_en.md`."
+   ],
+   "color": "#432",
+   "bgcolor": "#653"
+  }
+ ],
+ "links": [
+  [
+   1,
+   1,
+   0,
+   2,
+   0,
+   "MODEL"
+  ],
+  [
+   2,
+   2,
+   0,
+   3,
+   0,
+   "MODEL"
+  ],
+  [
+   3,
+   3,
+   0,
+   9,
+   0,
+   "MODEL"
+  ],
+  [
+   4,
+   11,
+   0,
+   12,
+   0,
+   "REFCAP_PACK"
+  ],
+  [
+   5,
+   12,
+   0,
+   13,
+   0,
+   "REFCAP_PACK"
+  ],
+  [
+   6,
+   4,
+   0,
+   14,
+   0,
+   "CLIP"
+  ],
+  [
+   7,
+   10,
+   0,
+   14,
+   1,
+   "STRING"
+  ],
+  [
+   8,
+   13,
+   0,
+   14,
+   2,
+   "REFCAP_PACK"
+  ],
+  [
+   9,
+   14,
+   1,
+   15,
+   0,
+   "*"
+  ],
+  [
+   10,
+   3,
+   0,
+   17,
+   0,
+   "MODEL"
+  ],
+  [
+   11,
+   14,
+   0,
+   17,
+   1,
+   "CONDITIONING"
+  ],
+  [
+   12,
+   7,
+   0,
+   18,
+   0,
+   "NOISE"
+  ],
+  [
+   13,
+   17,
+   0,
+   18,
+   1,
+   "GUIDER"
+  ],
+  [
+   14,
+   8,
+   0,
+   18,
+   2,
+   "SAMPLER"
+  ],
+  [
+   15,
+   9,
+   0,
+   18,
+   3,
+   "SIGMAS"
+  ],
+  [
+   16,
+   16,
+   0,
+   18,
+   4,
+   "LATENT"
+  ],
+  [
+   17,
+   18,
+   0,
+   19,
+   0,
+   "LATENT"
+  ],
+  [
+   18,
+   5,
+   0,
+   19,
+   1,
+   "VAE"
+  ],
+  [
+   19,
+   18,
+   0,
+   20,
+   0,
+   "LATENT"
+  ],
+  [
+   20,
+   6,
+   0,
+   20,
+   1,
+   "VAE"
+  ],
+  [
+   21,
+   19,
+   0,
+   21,
+   0,
+   "IMAGE"
+  ],
+  [
+   22,
+   20,
+   0,
+   21,
+   1,
+   "AUDIO"
+  ],
+  [
+   23,
+   21,
+   0,
+   22,
+   0,
+   "VIDEO"
+  ]
+ ],
+ "groups": [],
+ "config": {},
+ "extra": {
+  "ds": {
+   "scale": 0.5,
+   "offset": [
+    60,
+    80
+   ]
+  },
+  "frontendVersion": "1.39.5"
+ },
+ "version": 0.4
+}

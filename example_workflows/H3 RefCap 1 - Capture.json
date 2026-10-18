@@ -1,0 +1,735 @@
+{
+ "id": "ac7052ad-e2c4-5e0b-8d03-911302cebde2",
+ "revision": 0,
+ "last_node_id": 12,
+ "last_link_id": 15,
+ "nodes": [
+  {
+   "id": 1,
+   "type": "CLIPLoader",
+   "pos": [
+    0,
+    0
+   ],
+   "size": [
+    420,
+    106
+   ],
+   "flags": {},
+   "order": 0,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "CLIP",
+     "type": "CLIP",
+     "links": [
+      1
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "CLIPLoader"
+   },
+   "widgets_values": [
+    "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+    "minimax",
+    "default"
+   ]
+  },
+  {
+   "id": 2,
+   "type": "VAELoader",
+   "pos": [
+    0,
+    140
+   ],
+   "size": [
+    420,
+    58
+   ],
+   "flags": {},
+   "order": 1,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "VAE",
+     "type": "VAE",
+     "links": [
+      2
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "VAELoader"
+   },
+   "widgets_values": [
+    "minimax_h3_video_vae_int8_convrot.safetensors"
+   ],
+   "title": "Video VAE"
+  },
+  {
+   "id": 3,
+   "type": "VAELoader",
+   "pos": [
+    0,
+    230
+   ],
+   "size": [
+    420,
+    58
+   ],
+   "flags": {},
+   "order": 2,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "VAE",
+     "type": "VAE",
+     "links": [
+      3
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "VAELoader"
+   },
+   "widgets_values": [
+    "minimax_h3_audio_vae_fp32.safetensors"
+   ],
+   "title": "Audio VAE"
+  },
+  {
+   "id": 4,
+   "type": "LoadImage",
+   "pos": [
+    460,
+    0
+   ],
+   "size": [
+    280,
+    340
+   ],
+   "flags": {},
+   "order": 3,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "links": [
+      4,
+      10
+     ],
+     "slot_index": 0
+    },
+    {
+     "name": "MASK",
+     "type": "MASK",
+     "links": [],
+     "slot_index": 1
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "LoadImage"
+   },
+   "widgets_values": [
+    "pack_lf_013_neutral_front.jpg"
+   ],
+   "title": "Photo 1"
+  },
+  {
+   "id": 5,
+   "type": "LoadImage",
+   "pos": [
+    760,
+    0
+   ],
+   "size": [
+    280,
+    340
+   ],
+   "flags": {},
+   "order": 4,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "links": [
+      5,
+      11
+     ],
+     "slot_index": 0
+    },
+    {
+     "name": "MASK",
+     "type": "MASK",
+     "links": [],
+     "slot_index": 1
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "LoadImage"
+   },
+   "widgets_values": [
+    "pack_lf_013_smiling_front.jpg"
+   ],
+   "title": "Photo 2"
+  },
+  {
+   "id": 6,
+   "type": "LoadImage",
+   "pos": [
+    1060,
+    0
+   ],
+   "size": [
+    280,
+    340
+   ],
+   "flags": {},
+   "order": 5,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "links": [
+      6,
+      12
+     ],
+     "slot_index": 0
+    },
+    {
+     "name": "MASK",
+     "type": "MASK",
+     "links": [],
+     "slot_index": 1
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "LoadImage"
+   },
+   "widgets_values": [
+    "pack_lf_013_neutral_left_3quarter.jpg"
+   ],
+   "title": "Photo 3"
+  },
+  {
+   "id": 7,
+   "type": "LoadImage",
+   "pos": [
+    1360,
+    0
+   ],
+   "size": [
+    280,
+    340
+   ],
+   "flags": {},
+   "order": 6,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "links": [
+      7,
+      13
+     ],
+     "slot_index": 0
+    },
+    {
+     "name": "MASK",
+     "type": "MASK",
+     "links": [],
+     "slot_index": 1
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "LoadImage"
+   },
+   "widgets_values": [
+    "pack_lf_013_neutral_right_3quarter.jpg"
+   ],
+   "title": "Photo 4"
+  },
+  {
+   "id": 8,
+   "type": "LoadImage",
+   "pos": [
+    1660,
+    0
+   ],
+   "size": [
+    280,
+    340
+   ],
+   "flags": {},
+   "order": 7,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "links": [
+      8,
+      14
+     ],
+     "slot_index": 0
+    },
+    {
+     "name": "MASK",
+     "type": "MASK",
+     "links": [],
+     "slot_index": 1
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "LoadImage"
+   },
+   "widgets_values": [
+    "pack_lf_013_smiling_left_3quarter.jpg"
+   ],
+   "title": "Photo 5"
+  },
+  {
+   "id": 9,
+   "type": "MiniMaxH3ReferenceToVideo",
+   "pos": [
+    460,
+    400
+   ],
+   "size": [
+    420,
+    420
+   ],
+   "flags": {},
+   "order": 8,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "clip",
+     "type": "CLIP",
+     "link": 1
+    },
+    {
+     "name": "vae",
+     "type": "VAE",
+     "link": 2,
+     "shape": 7
+    },
+    {
+     "name": "audio_vae",
+     "type": "VAE",
+     "link": 3,
+     "shape": 7
+    },
+    {
+     "label": "ref_image_0",
+     "name": "ref_images.ref_image_0",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 4
+    },
+    {
+     "label": "ref_image_1",
+     "name": "ref_images.ref_image_1",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 5
+    },
+    {
+     "label": "ref_image_2",
+     "name": "ref_images.ref_image_2",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 6
+    },
+    {
+     "label": "ref_image_3",
+     "name": "ref_images.ref_image_3",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 7
+    },
+    {
+     "label": "ref_image_4",
+     "name": "ref_images.ref_image_4",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 8
+    },
+    {
+     "label": "ref_image_5",
+     "name": "ref_images.ref_image_5",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "label": "ref_video_0",
+     "name": "ref_videos.ref_video_0",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "label": "ref_video_audio_0",
+     "name": "ref_video_audios.ref_video_audio_0",
+     "shape": 7,
+     "type": "AUDIO",
+     "link": null
+    },
+    {
+     "label": "ref_audio_0",
+     "name": "ref_audios.ref_audio_0",
+     "shape": 7,
+     "type": "AUDIO",
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "name": "positive",
+     "type": "CONDITIONING",
+     "links": [
+      9
+     ],
+     "slot_index": 0
+    },
+    {
+     "name": "LATENT",
+     "type": "LATENT",
+     "links": [],
+     "slot_index": 1
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "MiniMaxH3ReferenceToVideo"
+   },
+   "widgets_values": [
+    "",
+    608,
+    352,
+    56,
+    "match"
+   ],
+   "title": "References (prompt stays EMPTY)"
+  },
+  {
+   "id": 10,
+   "type": "H3RefCapCapture",
+   "pos": [
+    920,
+    400
+   ],
+   "size": [
+    380,
+    420
+   ],
+   "flags": {},
+   "order": 9,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "conditioning",
+     "type": "CONDITIONING",
+     "link": 9
+    },
+    {
+     "name": "image_1",
+     "type": "IMAGE",
+     "link": 10,
+     "shape": 7
+    },
+    {
+     "name": "image_2",
+     "type": "IMAGE",
+     "link": 11,
+     "shape": 7
+    },
+    {
+     "name": "image_3",
+     "type": "IMAGE",
+     "link": 12,
+     "shape": 7
+    },
+    {
+     "name": "image_4",
+     "type": "IMAGE",
+     "link": 13,
+     "shape": 7
+    },
+    {
+     "name": "image_5",
+     "type": "IMAGE",
+     "link": 14,
+     "shape": 7
+    },
+    {
+     "name": "image_6",
+     "type": "IMAGE",
+     "link": null,
+     "shape": 7
+    },
+    {
+     "name": "image_7",
+     "type": "IMAGE",
+     "link": null,
+     "shape": 7
+    },
+    {
+     "name": "image_8",
+     "type": "IMAGE",
+     "link": null,
+     "shape": 7
+    },
+    {
+     "name": "image_9",
+     "type": "IMAGE",
+     "link": null,
+     "shape": 7
+    }
+   ],
+   "outputs": [
+    {
+     "name": "STRING",
+     "type": "STRING",
+     "links": [
+      15
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "H3RefCapCapture"
+   },
+   "widgets_values": [
+    "my_character",
+    "",
+    false,
+    true
+   ]
+  },
+  {
+   "id": 11,
+   "type": "PreviewAny",
+   "pos": [
+    1340,
+    400
+   ],
+   "size": [
+    400,
+    160
+   ],
+   "flags": {},
+   "order": 10,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "source",
+     "type": "*",
+     "link": 15
+    }
+   ],
+   "outputs": [
+    {
+     "name": "STRING",
+     "type": "STRING",
+     "links": [],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "PreviewAny"
+   },
+   "widgets_values": [],
+   "title": "Capture summary"
+  },
+  {
+   "id": 12,
+   "type": "MarkdownNote",
+   "pos": [
+    2020,
+    0
+   ],
+   "size": [
+    640,
+    1000
+   ],
+   "flags": {},
+   "order": 11,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [],
+   "title": "Read me",
+   "properties": {},
+   "widgets_values": [
+    "## 1. Capture a RefCap\nA **RefCap** (reference capture) records what MiniMax H3 takes from reference photos into one file in `ComfyUI/models/refcaps/`: the photos' VAE latents and the photos the text encoder saw, plus its `<Picture i>` rows with `store_rows` (only *H3 RefCap Apply* needs them). Nothing is changed, so replaying it (workflow 2) matches the reference node fed the original photos, with no photo loaders, resizing or VAE encode.\n\n**Steps**\n1. Load **up to 9 photos** of one person (5 are wired here). To add one, connect it to the next `ref_image` slot **and** the next `image_N` input.\n2. Connect the **same photos in the same order** to both nodes. The reference node makes the rows and latents; H3 RefCap Capture also stores the resized photos, which *H3 RefCap Replay* needs.\n3. Leave the reference node's **prompt empty**. Capture rejects conditioning that ends in prompt text.\n4. Set **width / height** to the size you will generate at. With `ref_image_size` = `match`, each photo is scaled to that pixel area, and the RefCap keeps that size. For the most identity, use `max` with photos of about 1024 px: +0.06 face similarity in tests, but ~2.2x the render time and ~33 MB per photo.\n5. Set `name` and queue. *Capture summary* shows the photo count, rows, reference tokens and file size.\n\n**Choosing photos**\n- One person, face clearly visible, varied angles and expressions: front, 3/4 left and right, neutral and smiling.\n- Same age and look across the photos. Avoid sunglasses, heavy filters, group shots and tiny faces.\n- In the tests, white t-shirts in the photos did not leak into renders that asked for other clothes.\n- Only use people who agreed to it.\n\n**File contents** (safetensors, format `h3_refcap`): `ref_0..` latents, the photos (as PNGs with `compact`, which replay bit-identically; a 1024 px photo is about 0.7 MB instead of 12 MB), `rows` and `tags` with `store_rows` (about 20 MB per 1,000 rows), JSON metadata."
+   ],
+   "color": "#432",
+   "bgcolor": "#653"
+  }
+ ],
+ "links": [
+  [
+   1,
+   1,
+   0,
+   9,
+   0,
+   "CLIP"
+  ],
+  [
+   2,
+   2,
+   0,
+   9,
+   1,
+   "VAE"
+  ],
+  [
+   3,
+   3,
+   0,
+   9,
+   2,
+   "VAE"
+  ],
+  [
+   4,
+   4,
+   0,
+   9,
+   3,
+   "IMAGE"
+  ],
+  [
+   5,
+   5,
+   0,
+   9,
+   4,
+   "IMAGE"
+  ],
+  [
+   6,
+   6,
+   0,
+   9,
+   5,
+   "IMAGE"
+  ],
+  [
+   7,
+   7,
+   0,
+   9,
+   6,
+   "IMAGE"
+  ],
+  [
+   8,
+   8,
+   0,
+   9,
+   7,
+   "IMAGE"
+  ],
+  [
+   9,
+   9,
+   0,
+   10,
+   0,
+   "CONDITIONING"
+  ],
+  [
+   10,
+   4,
+   0,
+   10,
+   1,
+   "IMAGE"
+  ],
+  [
+   11,
+   5,
+   0,
+   10,
+   2,
+   "IMAGE"
+  ],
+  [
+   12,
+   6,
+   0,
+   10,
+   3,
+   "IMAGE"
+  ],
+  [
+   13,
+   7,
+   0,
+   10,
+   4,
+   "IMAGE"
+  ],
+  [
+   14,
+   8,
+   0,
+   10,
+   5,
+   "IMAGE"
+  ],
+  [
+   15,
+   10,
+   0,
+   11,
+   0,
+   "*"
+  ]
+ ],
+ "groups": [
+  {
+   "id": 1,
+   "title": "Photos -> references -> RefCap",
+   "bounding": [
+    440,
+    -60,
+    1540,
+    920
+   ],
+   "color": "#3f789e",
+   "font_size": 24,
+   "flags": {}
+  }
+ ],
+ "config": {},
+ "extra": {
+  "ds": {
+   "scale": 0.5,
+   "offset": [
+    60,
+    80
+   ]
+  },
+  "frontendVersion": "1.39.5"
+ },
+ "version": 0.4
+}
