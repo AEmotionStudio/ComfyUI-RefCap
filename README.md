@@ -27,6 +27,9 @@
 
 ---
 
+[<img src="https://img.youtube.com/vi/ORBPb_Ap-fs/maxresdefault.jpg" width="100%">](https://youtu.be/ORBPb_Ap-fs)
+<p align="center"><i>One Photo, Any Shot: Consistent MiniMax H3 Characters. (Click to watch on YouTube)</i></p>
+
 ## ✨ Features
 
 <table>
